@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.thymeleaf.org">
+  <head th:replace="layouts/template :: head"> </head>
+  <body>
+    <header th:replace="layouts/template :: header"></header>
+    <div class="container">
+      <h1 th:text="${title}"></h1>
+    </div>
+
+    <div class="container">
+      <div class="container">
+        <a
+          class="btn btn-primary btn-sm"
+          th:href="@{/views/client/create}"
+          th:text="'Nuevo Cliente'"
+          title="Agregar nuevo cliente"
+        ></a>
+      </div>
+      <table class="table" st>
+        <thead>
+          <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Name</th>
+            <th scope="col">Last Nme</th>
+            <th scope="col">Phone</th>
+            <th scope="col">Email</th>
+            <th scope="col">Country</th>
+            <th scope="col">Edit</th>
+            <th scope="col">Delete</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr th:each="value:${list}">
+            <th scope="row" th:text="${value.id}"></th>
+            <td th:text=" ${value.name}"></td>
+            <td th:text=" ${value.last_name}"></td>
+            <td th:text=" ${value.phone}"></td>
+            <td th:text=" ${value.email}"></td>
+            <td th:text=" ${value.country.name}"></td>
+            <td>
+              <a
+                class="btn btn-warning btn-sm"
+                th:href="@{/views/client/edit/} + ${value.id}"
+                th:text="'Edit'"
+                title="Editar cliente"
+              ></a>
+            </td>
+            <td>
+              <a
+                class="btn btn-danger btn-sm"
+                th:href="@{/views/client/delete/} + ${value.id}"
+                th:text="'Delete'"
+                title="Eliminar cliente"
+                onclick=" return confirm('Esta seguro que desa eliminar el registro')"
+              ></a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <footer th:replace="layouts/template :: footer"></footer>
+  </body>
+</html>

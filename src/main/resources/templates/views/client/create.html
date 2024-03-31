@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.thymeleaf.org">
+  <head th:replace="layouts/template :: head"> </head>
+  <body>
+    <header th:replace="layouts/template :: header"></header>
+    <div class="container" style="margin-top: 2%">
+      <div class="card">
+        <div class="card-header">Formulario</div>
+        <div class="card-body">
+          <form
+            th:action="@{/views/client/store}"
+            th:object="${client}"
+            method="POST"
+            style="margin-left: 5%; margin-right: 5%"
+          >
+            <div class="mb-3 row form-group">
+              <input type="hidden" th:field="*{id}" />
+              <label for="name" class="form-label col-md-2">Nombre</label>
+              <input
+                type="text"
+                th:field="*{name}"
+                placeholder="Nombre del cliente"
+                class="form-control form-control-sm col-md-6"
+                id="name"
+              />
+              <small></small>
+            </div>
+
+            <div class="mb-3 row form-group">
+              <label for="last_name" class="form-label col-md-2"
+                >Apellidos</label
+              >
+              <input
+                type="text"
+                th:field="*{last_name}"
+                placeholder="Apellidos del cliente"
+                class="form-control form-control-sm col-md-6"
+                id="last_name"
+              />
+              <small></small>
+            </div>
+
+            <div class="mb-3 row form-group">
+              <label for="phone" class="form-label col-md-2">Telefono</label>
+              <input
+                type="text"
+                th:field="*{phone}"
+                placeholder="Telefono del cliente"
+                class="form-control form-control-sm col-md-6"
+                id="phone"
+              />
+              <small></small>
+            </div>
+
+            <div class="mb-3 row form-group">
+              <label for="email" class="form-label col-md-2">Correo</label>
+              <input
+                type="email"
+                th:field="*{email}"
+                placeholder="Correo del cliente"
+                class="form-control form-control-sm col-md-6"
+                id="email"
+              />
+              <small></small>
+            </div>
+
+            <div class="mb-3 row form-group">
+              <label for="country" class="form-label col-md-2">Pais</label>
+              <select
+                th:field="*{country}"
+                class="form-control form-control-sm col-md-6"
+                id="country"
+              >
+                <!-- <option></option> -->
+                <option
+                  th:each=" item: ${country}"
+                  th:value="${item.id}"
+                  th:text="${item.name}"
+                ></option>
+              </select>
+            </div>
+            <div class="card-footer">
+              <input
+                type="submit"
+                class="btn btn-primary btn-sm"
+                value="Aceptar"
+              />
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <footer th:replace="layouts/template :: footer"></footer>
+  </body>
+</html>
